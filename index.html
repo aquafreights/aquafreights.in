@@ -12,7 +12,7 @@
   <style>
     /* ── Reset & Base ─────────────────────────────────────── */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; font-size: 16px; }
+    html { scroll-behavior: smooth; font-size: 17.5px; }
 
     /* ── Design Tokens ────────────────────────────────────── */
     :root {
@@ -42,6 +42,7 @@
       background: var(--white);
       overflow-x: hidden;
       line-height: 1.6;
+      text-align: justify;
     }
 
     img { display: block; max-width: 100%; }
@@ -71,7 +72,7 @@
     nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
 
     .nav-logo {
-      display: flex; align-items: center; gap: 10px;
+      display: flex; align-items: center; gap: 8px;
     }
     .nav-logo-icon {
       width: 40px; height: 40px;
@@ -166,9 +167,99 @@
       min-height: 100vh;
       background: var(--navy);
       display: flex; align-items: center;
+      justify-content: space-between;
+      gap: 48px;
       padding: 120px 5% 80px;
       position: relative;
       overflow: hidden;
+    }
+    .hero-right-panel {
+      position: relative; z-index: 2;
+      flex-shrink: 0;
+      width: 440px;
+      animation: fadeInUp 0.9s 0.5s ease both;
+    }
+    .quote-highlight-card {
+      background: linear-gradient(135deg, rgba(200,168,75,0.12) 0%, rgba(14,143,138,0.12) 100%);
+      border: 1.5px solid rgba(200,168,75,0.4);
+      border-radius: 20px;
+      padding: 36px 32px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+    }
+    .qhc-icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .qhc-headline {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--gold);
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .qhc-sub {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+    .qhc-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+      text-align: left;
+    }
+    .qhc-features li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.78);
+    }
+    .qhc-features li::before {
+      content: "✓";
+      width: 20px; height: 20px;
+      background: rgba(14,143,138,0.3);
+      border: 1px solid var(--teal);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem;
+      color: var(--teal2);
+      flex-shrink: 0;
+      text-align: center;
+      line-height: 20px;
+    }
+    .qhc-cta {
+      display: block;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-align: center;
+      transition: all 0.2s;
+      box-shadow: 0 4px 20px rgba(200,168,75,0.4);
+    }
+    .qhc-cta:hover {
+      background: var(--gold2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(200,168,75,0.5);
+    }
+    .qhc-trust {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.35);
+      margin-top: 12px;
+    }
+    @media (max-width: 1024px) {
+      .hero-right-panel { width: 360px; }
+    }
+    @media (max-width: 768px) {
+      .hero-right-panel { display: none; }
     }
 
     /* Animated ocean waves background */
@@ -227,7 +318,8 @@
 
     .hero-content {
       position: relative; z-index: 2;
-      max-width: 680px;
+      max-width: 580px;
+      flex: 1;
     }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
@@ -334,6 +426,12 @@
       letter-spacing: 0.5px;
     }
 
+
+    @keyframes steamRise {
+      0%, 100% { opacity: 0.1; transform: translateY(0) scaleX(1); }
+      50% { opacity: 0.5; transform: translateY(-6px) scaleX(0.7); }
+    }
+
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-16px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -424,6 +522,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
+      grid-auto-rows: auto;
     }
     .service-card {
       background: var(--white);
@@ -593,6 +692,7 @@
       font-size: 0.87rem;
       color: var(--gray);
       line-height: 1.6;
+      text-align: justify;
     }
 
     /* ══════════════════════════════════════════════════════
@@ -621,24 +721,24 @@
     .lane-flag { font-size: 2.2rem; flex-shrink: 0; line-height: 1; }
     .lane-body {}
     .lane-region {
-      font-size: 0.72rem;
-      font-weight: 600;
+      font-size: 0.8rem;
+      font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       color: var(--teal);
-      margin-bottom: 5px;
+      margin-bottom: 6px;
     }
     .lane-title {
       font-family: var(--serif);
-      font-size: 1.05rem;
+      font-size: 1.15rem;
       font-weight: 700;
       color: var(--navy);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     .lane-ports {
-      font-size: 0.82rem;
+      font-size: 0.9rem;
       color: var(--gray);
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
     /* ══════════════════════════════════════════════════════
@@ -750,9 +850,10 @@
       margin-bottom: 4px;
     }
     .contact-item-value {
-      font-size: 0.92rem;
-      color: rgba(255,255,255,0.85);
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.92);
       line-height: 1.4;
+      font-weight: 500;
     }
     .contact-item-value a {
       color: rgba(255,255,255,0.85);
@@ -981,7 +1082,7 @@
       .highlight-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
       .highlight-item:nth-child(2n) { border-bottom: none; }
       .services-grid { grid-template-columns: repeat(2, 1fr); }
-      .about-grid { grid-template-columns: 1fr; gap: 50px; }
+      .about-grid { grid-template-columns: 1fr !important; gap: 40px; }
       .about-visual { order: -1; }
       .about-badge-float { bottom: -10px; right: -10px; }
       .contact-grid { grid-template-columns: 1fr; gap: 48px; }
@@ -1007,6 +1108,143 @@
       .hero-circle-1, .hero-circle-2, .hero-circle-3 { display: none; }
       .quote-form { padding: 28px 22px; }
     }
+
+
+    /* ── CONTRAST FIXES ─────────────────────────────────────── */
+    /* Services section — text on light bg */
+    #services .section-tag   { color: #0a6b66; font-weight:700; }
+    #services .service-title { color: #061e35; }
+    #services .service-desc  { color: #374151; }
+    #services .service-features li { color: #374151; }
+    #services .section-title { color: #061e35; }
+
+    /* Coverage section — text on wave-blue bg */
+    #coverage .section-tag   { color: #085e5a; font-weight:700; }
+    #coverage .section-title { color: #061e35; }
+    #coverage .section-desc  { color: #374151; }
+    #coverage .lane-region   { color: #085e5a; }
+    #coverage .lane-title    { color: #061e35; }
+    #coverage .lane-ports    { color: #374151; }
+
+    /* About section — text on sand bg */
+    #about .section-tag      { color: #0a6b66; font-weight:700; }
+    #about .section-title    { color: #061e35; }
+    #about .section-desc     { color: #374151; }
+    #about .value-title      { color: #061e35; font-weight:700; }
+    #about .value-desc       { color: #374151; }
+    #about .value-num        { color: #0e8f8a; opacity:1; }
+
+    /* Why strip on dark bg — keep white */
+    #why .hi-title  { color: #ffffff; }
+    #why .hi-desc   { color: rgba(255,255,255,0.72); }
+
+    /* Contact on dark bg */
+    #contact .contact-item-label { color: #7ee8e6; }
+    #contact .contact-item-value { color: #ffffff; }
+
+    /* Nav links */
+    .nav-links a { color: rgba(255,255,255,0.88); }
+    .nav-links a:hover { color: #7ee8e6; }
+
+    /* Hero desc */
+    .hero-desc { color: rgba(255,255,255,0.85); }
+
+    /* Stat labels in hero */
+    .stat-label { color: rgba(255,255,255,0.72); }
+
+    /* Process section */
+    #process .step-name { color: #061e35; font-weight:600; }
+    #process .step-desc { color: #4b5563; }
+    #process .step-label { color: #0a6b66; font-weight:700; }
+    #process .section-title { color: #061e35; }
+    #process .section-desc  { color: #374151; }
+
+    /* ═══════════════════════════════════════════════════════
+       OCEAN THEME OVERRIDES
+    ═══════════════════════════════════════════════════════ */
+    :root {
+      --seafoam:     #e8f7f6;
+      --wave-blue:   #daeef4;
+      --sand:        #f6f2ec;
+      --ocean-deep:  #0a2e4a;
+    }
+
+    /* Body base — warm sand instead of stark white */
+    body { background: var(--sand); }
+
+    /* NAV — deeper ocean */
+    nav { background: rgba(6,26,50,0.97); border-bottom-color: rgba(11,181,175,0.2); }
+
+    /* HERO — ocean gradient: deep to mid-ocean */
+    #home {
+      background: linear-gradient(165deg, #051e38 0%, #0a3d5a 38%, #0e5878 65%, #127898 100%);
+    }
+    #home::before {
+      background:
+        radial-gradient(ellipse 80% 55% at 72% 78%, rgba(18,120,152,0.38) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 12% 22%, rgba(10,90,150,0.28) 0%, transparent 55%),
+        radial-gradient(ellipse 35% 28% at 88% 12%, rgba(11,181,175,0.14) 0%, transparent 50%);
+    }
+    #home::after {
+      background-image:
+        linear-gradient(rgba(11,181,175,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(11,181,175,0.06) 1px, transparent 1px);
+      background-size: 52px 52px;
+    }
+    /* Hero wave separator → seafoam */
+    .hero-wave svg path { fill: #e8f7f6 !important; }
+
+    /* WHY strip — ocean gradient */
+    #why {
+      background: linear-gradient(135deg, #0a2e4a 0%, #0e4f78 55%, #0a3c5a 100%);
+    }
+
+    /* SERVICES — seafoam tint */
+    #services { background: var(--seafoam); }
+    #services .service-card { background: #ffffff; border-color: rgba(14,143,138,0.1); }
+    #services .section-title { color: #0a2e4a; }
+    #services .section-tag   { color: #0e8f8a; }
+
+    /* ABOUT — warm sand */
+    #about { background: var(--sand); }
+    #about .section-title { color: #0a2e4a; }
+
+    /* COVERAGE — wave blue */
+    #coverage { background: var(--wave-blue); }
+    #coverage .section-title { color: #0a2e4a; }
+    #coverage .section-tag   { color: #0e8f8a; }
+    #coverage .lane-card { background: #ffffff; border-color: rgba(14,143,138,0.1); }
+
+    /* PROCESS — white with ocean accent */
+    #process { background: #ffffff; }
+
+    /* CONTACT — deep ocean */
+    #contact {
+      background: linear-gradient(160deg, #051e38 0%, #0a3558 55%, #051e38 100%);
+    }
+    #contact::before {
+      background: radial-gradient(ellipse 65% 65% at 78% 42%, rgba(14,120,152,0.18), transparent 60%);
+    }
+
+    /* FOOTER */
+    footer { background: #030f1c !important; }
+
+    /* Quote highlight card styling — ocean glass */
+    .quote-highlight-card {
+      background: linear-gradient(160deg, rgba(10,46,74,0.95), rgba(14,72,108,0.9)) !important;
+      border: 2px solid rgba(11,181,175,0.3) !important;
+      backdrop-filter: blur(20px);
+    }
+
+    /* Section titles globally → ocean deep */
+    .section-title { color: #0a2e4a; }
+
+    /* Steam animation */
+    @keyframes steamRise {
+      0%, 100% { opacity: 0.12; transform: translateY(0) scaleX(1); }
+      50%       { opacity: 0.5;  transform: translateY(-7px) scaleX(0.65); }
+    }
+
   </style>
 </head>
 <body>
@@ -1014,17 +1252,32 @@
 <!-- ═══════ NAV ═══════ -->
 <nav id="navbar">
   <a href="#home" class="nav-logo">
-    <div class="nav-logo-icon">🌊</div>
+    <div class="nav-logo-icon" style="width:48px;height:48px;background:none;display:flex;align-items:center;justify-content:center;">
+      <svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Ship hull -->
+        <path d="M6 30 L10 22 L38 22 L42 30 L24 36 Z" fill="#0e8f8a" stroke="#0bb5af" stroke-width="1.2"/>
+        <!-- Ship body upper -->
+        <rect x="14" y="14" width="20" height="10" rx="2" fill="#1a4d8f" stroke="#0bb5af" stroke-width="1"/>
+        <!-- Chimney/funnel -->
+        <rect x="22" y="8" width="5" height="8" rx="1.5" fill="#c8a84b"/>
+        <!-- Windows -->
+        <circle cx="18" cy="19" r="2" fill="#0bb5af" opacity="0.9"/>
+        <circle cx="24" cy="19" r="2" fill="#0bb5af" opacity="0.9"/>
+        <circle cx="30" cy="19" r="2" fill="#0bb5af" opacity="0.9"/>
+        <!-- Wave under ship -->
+        <path d="M4 34 Q12 30 20 34 Q28 38 36 34 Q42 30 46 34" stroke="#0bb5af" stroke-width="1.5" fill="none" opacity="0.6"/>
+      </svg>
+    </div>
     <div class="nav-logo-text">
-      <span class="nav-logo-name">Aquafreights</span>
-      <span class="nav-logo-tag">Sea Freight Specialists</span>
+      <span class="nav-logo-name" style="font-size:1.35rem;letter-spacing:0.5px;line-height:1.1;">Aquafreights</span>
+      <span class="nav-logo-tag" style="font-size:0.58rem;letter-spacing:1.8px;opacity:0.85;">SEA FREIGHT</span>
     </div>
   </a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#coverage">Coverage</a></li>
-    <li><a href="#process">How It Works</a></li>
+    <li><a href="#contact">Contact Us</a></li>
     <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Open menu">
@@ -1036,7 +1289,7 @@
   <a href="#services"  onclick="closeMobile()">Services</a>
   <a href="#about"     onclick="closeMobile()">About Us</a>
   <a href="#coverage"  onclick="closeMobile()">Coverage</a>
-  <a href="#process"   onclick="closeMobile()">How It Works</a>
+  <a href="#contact"   onclick="closeMobile()">Contact Us</a>
   <a href="#contact"   onclick="closeMobile()" style="color:var(--gold)">Get a Quote →</a>
 </div>
 
@@ -1061,25 +1314,22 @@
       ocean freight solutions.
     </p>
     <div class="hero-actions">
-      <a href="#contact" class="btn-primary">
-        📋 Request a Quote
-      </a>
-      <a href="#services" class="btn-outline">
+      <a href="#services" class="btn-primary">
         Explore Services →
       </a>
     </div>
     <div class="hero-stats">
       <div class="stat-item">
-        <div class="stat-number">50+</div>
+        <div class="stat-number">20+</div>
         <div class="stat-label">Countries Served</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">FCL</div>
-        <div class="stat-label">Full Container Load</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">LCL</div>
         <div class="stat-label">Less Container Load</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">FCL</div>
+        <div class="stat-label">Full Container Load</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">24/7</div>
@@ -1088,6 +1338,68 @@
     </div>
   </div>
 
+  <div class="hero-right-panel">
+    <div style="border-radius:22px;overflow:hidden;box-shadow:0 24px 72px rgba(0,0,0,0.55);border:2px solid rgba(11,181,175,0.35);">
+
+      <!-- Ocean + Cargo ship photo — tall, dramatic -->
+      <div style="position:relative;height:320px;overflow:hidden;">
+        <img
+          src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=900&q=85&auto=format&fit=crop"
+          alt="Cargo ship sailing blue ocean"
+          style="width:100%;height:100%;object-fit:cover;object-position:center 40%;"
+        />
+        <!-- Gradient overlay: dark top, heavier bottom -->
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,18,38,0.35) 0%,rgba(4,18,38,0.15) 40%,rgba(4,18,38,0.72) 100%);"></div>
+        <!-- Teal shimmer on ocean -->
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 40% at 50% 70%,rgba(11,181,175,0.1),transparent 70%);"></div>
+
+        <!-- ⚡ 30 MIN QUOTE badge — big, prominent top-right -->
+        <div style="position:absolute;top:20px;right:20px;background:linear-gradient(135deg,#c8a84b,#f0d060);color:#061e35;padding:14px 20px;border-radius:16px;text-align:center;box-shadow:0 6px 28px rgba(200,168,75,0.55);min-width:100px;">
+          <div style="font-size:0.62rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;opacity:0.75;">Get Quote In</div>
+          <div style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:800;line-height:1;">⚡ 30</div>
+          <div style="font-size:0.7rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-top:2px;">MINUTES</div>
+        </div>
+
+        <!-- Top-left: online indicator -->
+        <div style="position:absolute;top:20px;left:20px;background:rgba(4,18,38,0.65);backdrop-filter:blur(10px);border:1px solid rgba(37,211,102,0.4);border-radius:30px;padding:6px 14px;display:flex;align-items:center;gap:7px;">
+          <div style="width:8px;height:8px;background:#25D366;border-radius:50%;box-shadow:0 0 8px #25D366;"></div>
+          <span style="font-size:0.72rem;font-weight:600;color:rgba(255,255,255,0.9);">Experts Online</span>
+        </div>
+
+        <!-- Philosophy quote overlay -->
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:20px 22px;background:linear-gradient(0deg,rgba(4,18,38,0.88),transparent);">
+          <div style="font-family:'Playfair Display',serif;font-size:1.08rem;font-weight:700;color:#ffffff;font-style:italic;line-height:1.45;text-shadow:0 2px 10px rgba(0,0,0,0.7);">"Every shipment carries a promise."</div>
+          <div style="font-size:0.72rem;color:rgba(255,255,255,0.55);margin-top:5px;">— Aquafreights, Jodhpur</div>
+        </div>
+      </div>
+
+      <!-- Bottom info panel -->
+      <div style="background:linear-gradient(160deg,rgba(5,22,45,0.97),rgba(10,50,80,0.97));padding:24px 26px 26px;backdrop-filter:blur(20px);">
+
+        <!-- Stats row -->
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;">
+          <div style="background:rgba(11,181,175,0.12);border:1px solid rgba(11,181,175,0.3);border-radius:12px;padding:12px 8px;text-align:center;">
+            <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;color:#7ee8e6;line-height:1;">20+</div>
+            <div style="font-size:0.65rem;color:rgba(255,255,255,0.55);margin-top:4px;line-height:1.3;">Countries<br>Served</div>
+          </div>
+          <div style="background:rgba(11,181,175,0.12);border:1px solid rgba(11,181,175,0.3);border-radius:12px;padding:12px 8px;text-align:center;">
+            <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;color:#7ee8e6;line-height:1;">LCL</div>
+            <div style="font-size:0.65rem;color:rgba(255,255,255,0.55);margin-top:4px;line-height:1.3;">Consolidated<br>Cargo</div>
+          </div>
+          <div style="background:rgba(11,181,175,0.12);border:1px solid rgba(11,181,175,0.3);border-radius:12px;padding:12px 8px;text-align:center;">
+            <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;color:#7ee8e6;line-height:1;">FCL</div>
+            <div style="font-size:0.65rem;color:rgba(255,255,255,0.55);margin-top:4px;line-height:1.3;">Full Container<br>Load</div>
+          </div>
+        </div>
+
+        <!-- CTA button -->
+        <a href="#contact" style="display:block;text-align:center;background:linear-gradient(90deg,#0bb5af,#0e8f8a);color:#ffffff;padding:15px 20px;border-radius:12px;font-weight:700;font-size:0.92rem;box-shadow:0 6px 24px rgba(11,181,175,0.4);text-decoration:none;letter-spacing:0.3px;">
+          Get a Free Quote in 30 Minutes →
+        </a>
+        <p style="text-align:center;font-size:0.68rem;color:rgba(255,255,255,0.32);margin-top:10px;">Mon–Sat · 10 AM–6 PM IST · No spam, ever</p>
+      </div>
+    </div>
+  </div>
   <div class="hero-wave">
     <svg viewBox="0 0 1440 80" preserveAspectRatio="none" fill="#f0f4f8">
       <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z"/>
@@ -1130,261 +1442,661 @@
 </section>
 
 <!-- ═══════ SERVICES ═══════ -->
-<section id="services">
-  <div class="section-header section-header-center reveal">
-    <div class="section-tag">What We Do</div>
-    <h2 class="section-title">Our <span>Services</span></h2>
-    <p class="section-desc">
-      End-to-end sea freight solutions tailored for Indian exporters and importers —
-      from booking to final delivery.
-    </p>
+<section id="services" style="padding:0;background:var(--seafoam);">
+
+  <!-- Photo banner header for services -->
+  <div style="position:relative;height:280px;overflow:hidden;">
+    <img
+      src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1600&q=80&auto=format&fit=crop"
+      alt="Container cargo ship at sea"
+      style="width:100%;height:100%;object-fit:cover;object-position:center 60%;"
+    />
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,20,40,0.85) 0%,rgba(4,20,40,0.55) 60%,rgba(4,20,40,0.2) 100%);"></div>
+    <div style="position:absolute;inset:0;display:flex;align-items:center;padding:0 7%;">
+      <div>
+        <div style="font-size:0.72rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#7ee8e6;margin-bottom:12px;">What We Do</div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,2.8rem);font-weight:800;color:#ffffff;line-height:1.15;margin-bottom:10px;">Our <span style="color:#7ee8e6;">Services</span></h2>
+        <p style="font-size:0.95rem;color:rgba(255,255,255,0.8);max-width:480px;line-height:1.65;">End-to-end sea freight solutions — from factory gate in Jodhpur to port of discharge anywhere in the world.</p>
+      </div>
+    </div>
   </div>
 
-  <div class="services-grid">
-    <div class="service-card reveal">
-      <div class="service-icon">🚢</div>
-      <h3 class="service-title">FCL — Full Container Load</h3>
-      <p class="service-desc">
-        Dedicated 20ft and 40ft container bookings for large volume shipments. Ideal for bulk
-        cargo requiring exclusive container space with direct routing.
-      </p>
-      <ul class="service-features">
-        <li>20ft & 40ft standard containers</li>
-        <li>20ft & 40ft high cube containers</li>
-        <li>Reefer & special equipment</li>
-        <li>Competitive ocean freight rates</li>
-        <li>Direct & transhipment routing</li>
-      </ul>
-    </div>
+  <!-- Service Cards Grid — photo-card style like SAR -->
+  <div style="padding:60px 7%;background:var(--seafoam);">
+    <div class="services-grid">
 
-    <div class="service-card reveal">
-      <div class="service-icon">📦</div>
-      <h3 class="service-title">LCL — Less Container Load</h3>
-      <p class="service-desc">
-        Consolidated groupage shipments for smaller cargo volumes. Share container space
-        and only pay for what you ship — perfect for SMEs and frequent smaller consignments.
-      </p>
-      <ul class="service-features">
-        <li>Weekly consolidation services</li>
-        <li>Competitive CBM-based pricing</li>
-        <li>Cargo insurance options</li>
-        <li>Flexible dispatch schedules</li>
-        <li>CFS stuffing & unstuffing</li>
-      </ul>
-    </div>
+      <!-- Card 1: LCL -->
+      <div class="service-card reveal" style="padding:0;overflow:hidden;border:none;">
+        <div style="position:relative;height:180px;overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=600&q=80&auto=format&fit=crop" alt="LCL cargo consolidation" style="width:100%;height:100%;object-fit:cover;"/>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,20,40,0.2) 0%,rgba(4,20,40,0.72) 100%);"></div>
+          <div style="position:absolute;bottom:16px;left:18px;right:18px;">
+            <div style="display:inline-block;background:rgba(11,181,175,0.9);color:#fff;font-size:0.68rem;font-weight:700;letter-spacing:1.5px;padding:4px 10px;border-radius:4px;text-transform:uppercase;margin-bottom:6px;">Sea Freight</div>
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#ffffff;">LCL — Less Container Load</h3>
+          </div>
+        </div>
+        <div style="padding:22px 22px 24px;">
+          <p class="service-desc">Consolidated groupage shipments for smaller volumes. Share container space and only pay for what you ship — ideal for SMEs and frequent smaller consignments.</p>
+          <ul class="service-features">
+            <li>Weekly consolidation services</li>
+            <li>Competitive CBM-based pricing</li>
+            <li>CFS stuffing &amp; unstuffing</li>
+            <li>Flexible dispatch schedules</li>
+          </ul>
+        </div>
+      </div>
 
-    <div class="service-card reveal">
-      <div class="service-icon">🛃</div>
-      <h3 class="service-title">Customs Clearance</h3>
-      <p class="service-desc">
-        Expert customs brokerage services for both import and export shipments. We handle
-        all documentation, duty calculations, and regulatory compliance on your behalf.
-      </p>
-      <ul class="service-features">
-        <li>Import & export customs filing</li>
-        <li>Bill of Entry preparation</li>
-        <li>Duty drawback assistance</li>
-        <li>GST & IGST documentation</li>
-        <li>DGFT & FSSAI compliance</li>
-      </ul>
-    </div>
+      <!-- Card 2: FCL -->
+      <div class="service-card reveal" style="padding:0;overflow:hidden;border:none;">
+        <div style="position:relative;height:180px;overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=600&q=80&auto=format&fit=crop" alt="FCL full container shipping" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;"/>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,20,40,0.2) 0%,rgba(4,20,40,0.72) 100%);"></div>
+          <div style="position:absolute;bottom:16px;left:18px;right:18px;">
+            <div style="display:inline-block;background:rgba(11,181,175,0.9);color:#fff;font-size:0.68rem;font-weight:700;letter-spacing:1.5px;padding:4px 10px;border-radius:4px;text-transform:uppercase;margin-bottom:6px;">Sea Freight</div>
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#ffffff;">FCL — Full Container Load</h3>
+          </div>
+        </div>
+        <div style="padding:22px 22px 24px;">
+          <p class="service-desc">Dedicated 20ft and 40ft container bookings for large volumes. Exclusive container space with direct routing and competitive rates.</p>
+          <ul class="service-features">
+            <li>20ft &amp; 40ft standard &amp; high cube</li>
+            <li>Reefer &amp; special equipment</li>
+            <li>Direct &amp; transhipment routing</li>
+            <li>Competitive ocean freight rates</li>
+          </ul>
+        </div>
+      </div>
 
-    <div class="service-card reveal">
-      <div class="service-icon">📄</div>
-      <h3 class="service-title">Freight Documentation</h3>
-      <p class="service-desc">
-        Accurate and timely preparation of all shipping documents to ensure smooth
-        transit and hassle-free clearance at origin and destination ports.
-      </p>
-      <ul class="service-features">
-        <li>Bill of Lading (OBL & Telex)</li>
-        <li>Packing list & commercial invoice</li>
-        <li>Certificate of Origin</li>
-        <li>Fumigation certificates</li>
-        <li>Phytosanitary certificates</li>
-      </ul>
-    </div>
+      <!-- Card 3: Customs -->
+      <div class="service-card reveal" style="padding:0;overflow:hidden;border:none;">
+        <div style="position:relative;height:180px;overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80&auto=format&fit=crop" alt="Customs clearance documentation" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;"/>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,20,40,0.2) 0%,rgba(4,20,40,0.72) 100%);"></div>
+          <div style="position:absolute;bottom:16px;left:18px;right:18px;">
+            <div style="display:inline-block;background:rgba(200,168,75,0.9);color:#0a2e4a;font-size:0.68rem;font-weight:700;letter-spacing:1.5px;padding:4px 10px;border-radius:4px;text-transform:uppercase;margin-bottom:6px;">Clearance</div>
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#ffffff;">Customs Clearance</h3>
+          </div>
+        </div>
+        <div style="padding:22px 22px 24px;">
+          <p class="service-desc">Expert customs brokerage for import and export. We handle all documentation, duty calculations, and regulatory compliance on your behalf.</p>
+          <ul class="service-features">
+            <li>Bill of Entry preparation</li>
+            <li>Duty drawback assistance</li>
+            <li>GST &amp; IGST documentation</li>
+            <li>DGFT &amp; FSSAI compliance</li>
+          </ul>
+        </div>
+      </div>
 
-    <div class="service-card reveal">
-      <div class="service-icon">🏭</div>
-      <h3 class="service-title">Inland Transportation</h3>
-      <p class="service-desc">
-        Reliable door-to-port and port-to-door trucking across Rajasthan and North India.
-        We coordinate seamless movement from your factory to the vessel.
-      </p>
-      <ul class="service-features">
-        <li>Factory stuffing / destuffing</li>
-        <li>ICD to port transportation</li>
-        <li>Jodhpur to Mundra / JNPT / Chennai</li>
-        <li>ODC & project cargo</li>
-        <li>Refrigerated transport available</li>
-      </ul>
-    </div>
+      <!-- Card 4: Documentation -->
+      <div class="service-card reveal" style="padding:0;overflow:hidden;border:none;">
+        <div style="position:relative;height:180px;overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1568667256549-094345857637?w=600&q=80&auto=format&fit=crop" alt="Freight shipping documentation" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;"/>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,20,40,0.2) 0%,rgba(4,20,40,0.72) 100%);"></div>
+          <div style="position:absolute;bottom:16px;left:18px;right:18px;">
+            <div style="display:inline-block;background:rgba(200,168,75,0.9);color:#0a2e4a;font-size:0.68rem;font-weight:700;letter-spacing:1.5px;padding:4px 10px;border-radius:4px;text-transform:uppercase;margin-bottom:6px;">Paperwork</div>
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#ffffff;">Freight Documentation</h3>
+          </div>
+        </div>
+        <div style="padding:22px 22px 24px;">
+          <p class="service-desc">Accurate and timely preparation of all shipping documents for smooth transit and hassle-free clearance at origin and destination.</p>
+          <ul class="service-features">
+            <li>Bill of Lading (OBL &amp; Telex)</li>
+            <li>Certificate of Origin</li>
+            <li>Fumigation &amp; phytosanitary certs</li>
+            <li>Packing list &amp; commercial invoice</li>
+          </ul>
+        </div>
+      </div>
 
-    <div class="service-card reveal">
-      <div class="service-icon">🔒</div>
-      <h3 class="service-title">Cargo Insurance</h3>
-      <p class="service-desc">
-        Comprehensive marine cargo insurance to protect your goods throughout the
-        voyage. We help you choose the right cover for every shipment type and value.
-      </p>
-      <ul class="service-features">
-        <li>Institute Cargo Clauses A / B / C</li>
-        <li>All-risk comprehensive cover</li>
-        <li>War & SRCC cover available</li>
-        <li>Claim assistance support</li>
-        <li>Competitive premium rates</li>
-      </ul>
+      <!-- Card 5: Inland Transport -->
+      <div class="service-card reveal" style="padding:0;overflow:hidden;border:none;">
+        <div style="position:relative;height:180px;overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=600&q=80&auto=format&fit=crop" alt="Inland trucking transportation India" style="width:100%;height:100%;object-fit:cover;object-position:center 50%;"/>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,20,40,0.2) 0%,rgba(4,20,40,0.72) 100%);"></div>
+          <div style="position:absolute;bottom:16px;left:18px;right:18px;">
+            <div style="display:inline-block;background:rgba(11,181,175,0.9);color:#fff;font-size:0.68rem;font-weight:700;letter-spacing:1.5px;padding:4px 10px;border-radius:4px;text-transform:uppercase;margin-bottom:6px;">Transport</div>
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#ffffff;">Inland Transportation</h3>
+          </div>
+        </div>
+        <div style="padding:22px 22px 24px;">
+          <p class="service-desc">Reliable door-to-port trucking across Rajasthan and North India — seamless movement from your factory to the vessel.</p>
+          <ul class="service-features">
+            <li>Factory stuffing / destuffing</li>
+            <li>ICD to port transportation</li>
+            <li>Jodhpur to Mundra / JNPT</li>
+            <li>ODC &amp; project cargo</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 6: Support Team — photo of professional support -->
+      <div class="service-card reveal" style="padding:0;overflow:hidden;border:none;">
+        <div style="position:relative;height:180px;overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&q=80&auto=format&fit=crop" alt="Professional logistics support team" style="width:100%;height:100%;object-fit:cover;object-position:center 25%;"/>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,20,40,0.15) 0%,rgba(4,20,40,0.75) 100%);"></div>
+          <div style="position:absolute;bottom:16px;left:18px;right:18px;">
+            <div style="display:inline-block;background:rgba(37,211,102,0.9);color:#fff;font-size:0.68rem;font-weight:700;letter-spacing:1.5px;padding:4px 10px;border-radius:4px;text-transform:uppercase;margin-bottom:6px;">● Online Now</div>
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#ffffff;">Dedicated Support</h3>
+          </div>
+        </div>
+        <div style="padding:22px 22px 24px;">
+          <p class="service-desc">A real freight expert — not a bot. Personal attention for every enquiry, every shipment. Quote within 30 minutes, Mon–Sat.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;">
+            <span style="background:#f0fafa;border:1px solid rgba(14,143,138,0.2);color:#085e5a;padding:5px 12px;border-radius:20px;font-size:0.76rem;font-weight:600;">⚡ 30 Min Quote</span>
+            <span style="background:#f0fafa;border:1px solid rgba(14,143,138,0.2);color:#085e5a;padding:5px 12px;border-radius:20px;font-size:0.76rem;font-weight:600;">Mon–Sat · 10–6 IST</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
 <!-- ═══════ ABOUT ═══════ -->
-<section id="about">
-  <div class="about-grid">
-    <div class="about-visual reveal">
-      <div class="about-map-card">
-        <div class="map-title">🌐 Our Trade Network</div>
-        <div class="map-sub">Key ports & trade corridors we serve</div>
-        <div class="route-list">
-          <div class="route-item">
-            <div class="route-dot"></div>
-            <span class="route-label">Origin — India</span>
-            <span class="route-ports">Mundra · JNPT · Chennai · Nhava Sheva</span>
-          </div>
-          <div class="route-item">
-            <div class="route-dot"></div>
-            <span class="route-label">Middle East</span>
-            <span class="route-ports">Jebel Ali · Dammam · Sohar</span>
-          </div>
-          <div class="route-item">
-            <div class="route-dot"></div>
-            <span class="route-label">Europe</span>
-            <span class="route-ports">Hamburg · Rotterdam · Felixstowe</span>
-          </div>
-          <div class="route-item">
-            <div class="route-dot"></div>
-            <span class="route-label">Americas</span>
-            <span class="route-ports">New York · Los Angeles · Santos</span>
-          </div>
-          <div class="route-item">
-            <div class="route-dot"></div>
-            <span class="route-label">Far East</span>
-            <span class="route-ports">Shanghai · Qingdao · Busan · Singapore</span>
-          </div>
-          <div class="route-item">
-            <div class="route-dot"></div>
-            <span class="route-label">Africa</span>
-            <span class="route-ports">Mombasa · Durban · Dar es Salaam</span>
-          </div>
-        </div>
-      </div>
-      <div class="about-badge-float">
-        <div class="badge-num">50+</div>
-        <div class="badge-label">Countries<br>Covered</div>
+<section id="about" style="padding:0;background:var(--sand);">
+
+  <!-- Photo banner: port/container yard — full width with overlay -->
+  <div style="position:relative;height:420px;overflow:hidden;">
+    <img
+      src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1600&q=80&auto=format&fit=crop"
+      alt="Container port operations"
+      style="width:100%;height:100%;object-fit:cover;object-position:center 40%;"
+    />
+    <!-- Dark gradient overlay for text legibility -->
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,20,40,0.88) 0%,rgba(4,20,40,0.65) 55%,rgba(4,20,40,0.3) 100%);"></div>
+    <!-- Overlay text -->
+    <div style="position:absolute;inset:0;display:flex;align-items:center;padding:0 7%;">
+      <div style="max-width:580px;">
+        <div style="font-size:0.72rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#7ee8e6;margin-bottom:14px;">About Aquafreights</div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:#ffffff;line-height:1.2;margin-bottom:14px;">Trusted Partner for <span style="color:#7ee8e6;">Ocean Freight</span> from India</h2>
+        <p style="font-size:0.92rem;color:rgba(255,255,255,0.8);line-height:1.65;max-width:460px;">Jodhpur-based sea freight specialists connecting Indian businesses to global markets — complete documentation, customs clearance, on-time delivery.</p>
       </div>
     </div>
+  </div>
 
-    <div class="about-content reveal">
-      <div class="section-tag">About Aquafreights</div>
-      <h2 class="section-title">Your Trusted Partner for<br><span>Ocean Freight</span> from India</h2>
-      <p class="section-desc">
-        Based in Jodhpur, Rajasthan, Aquafreights specialises in sea freight forwarding
-        for Indian exporters and importers. We combine deep local knowledge with
-        a global network of shipping lines and agents to deliver reliable, cost-effective
-        freight solutions.
-      </p>
-      <p class="section-desc" style="margin-top:14px">
-        Whether you are a textile exporter from Jodhpur, a handicraft manufacturer,
-        or an FMCG importer, we manage your shipment from factory gate to the final destination —
-        with complete documentation, customs clearance, and on-time delivery.
-      </p>
+  <!-- Mission / Vision / Values — below the photo -->
+  <div style="padding:80px 7%;background:var(--sand);">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:32px;align-items:start;">
 
-      <div class="value-list">
-        <div class="value-item">
-          <div class="value-num">01</div>
-          <div class="value-body">
-            <div class="value-title">Transparency at Every Step</div>
-            <div class="value-desc">You receive clear, itemised freight quotations with no hidden charges. We keep you informed at every stage of your shipment's journey.</div>
+      <!-- MISSION -->
+      <div style="background:#ffffff;border-radius:20px;padding:36px 32px;box-shadow:0 6px 32px rgba(10,46,74,0.08);border-top:4px solid #0bb5af;height:100%;">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+          <div style="width:50px;height:50px;background:linear-gradient(135deg,#0a3d5a,#127a96);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="9" stroke="#7ee8e6" stroke-width="1.5"/>
+              <path d="M12 3 L12 12 L17 17" stroke="#ffd240" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="12" cy="12" r="2" fill="#7ee8e6"/>
+            </svg>
+          </div>
+          <div>
+            <div style="font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#0a6b66;margin-bottom:3px;">Our Mission</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#061e35;line-height:1.1;">Mission</div>
           </div>
         </div>
-        <div class="value-item">
-          <div class="value-num">02</div>
-          <div class="value-body">
-            <div class="value-title">Expert Local Knowledge</div>
-            <div class="value-desc">Deep expertise in Rajasthan's export landscape — textiles, handicrafts, marble, gems — and the specific regulatory requirements of each commodity.</div>
+        <p style="font-size:0.92rem;color:#374151;line-height:1.75;text-align:justify;">
+          Delivering dependable and efficient freight forwarding solutions with <strong style="color:#061e35;">transparency</strong>, <strong style="color:#061e35;">professionalism</strong>, and a <strong style="color:#061e35;">customer-first</strong> approach — every shipment, every time.
+        </p>
+        <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(14,143,138,0.12);display:flex;gap:20px;">
+          <div style="text-align:center;">
+            <div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:800;color:#0a3d5a;">⚡30</div>
+            <div style="font-size:0.68rem;color:#6b7280;margin-top:2px;font-weight:500;">Min Quote</div>
           </div>
-        </div>
-        <div class="value-item">
-          <div class="value-num">03</div>
-          <div class="value-body">
-            <div class="value-title">Personalised Service</div>
-            <div class="value-desc">Dedicated relationship managers for each client. You speak to the same person every time — no call centres, no ticket queues.</div>
+          <div style="text-align:center;">
+            <div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:800;color:#0a3d5a;">20+</div>
+            <div style="font-size:0.68rem;color:#6b7280;margin-top:2px;font-weight:500;">Countries</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:800;color:#0a3d5a;">3</div>
+            <div style="font-size:0.68rem;color:#6b7280;margin-top:2px;font-weight:500;">Origin Ports</div>
           </div>
         </div>
       </div>
+
+      <!-- VISION -->
+      <div style="background:#ffffff;border-radius:20px;padding:36px 32px;box-shadow:0 6px 32px rgba(10,46,74,0.08);border-top:4px solid #c8a84b;height:100%;">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+          <div style="width:50px;height:50px;background:linear-gradient(135deg,#3a2a00,#8a6010);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Globe/vision icon -->
+              <circle cx="12" cy="12" r="9" stroke="#ffd240" stroke-width="1.5"/>
+              <ellipse cx="12" cy="12" rx="9" ry="4.5" stroke="#ffd240" stroke-width="1" opacity="0.5"/>
+              <line x1="3" y1="12" x2="21" y2="12" stroke="#ffd240" stroke-width="1" opacity="0.5"/>
+              <line x1="12" y1="3" x2="12" y2="21" stroke="#ffd240" stroke-width="1" opacity="0.5"/>
+            </svg>
+          </div>
+          <div>
+            <div style="font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#7a5a00;margin-bottom:3px;">Our Vision</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#061e35;line-height:1.1;">Vision</div>
+          </div>
+        </div>
+        <p style="font-size:0.92rem;color:#374151;line-height:1.75;text-align:justify;">
+          To be a <strong style="color:#061e35;">globally trusted logistics partner</strong> enabling seamless trade movement across borders — empowering Indian businesses to compete and grow in world markets.
+        </p>
+        <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(200,168,75,0.15);">
+          <div style="font-size:0.8rem;font-weight:600;color:#6b7280;margin-bottom:10px;">Serving trade lanes to</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span style="background:#f0fafa;border:1px solid rgba(14,143,138,0.2);color:#085e5a;padding:4px 12px;border-radius:20px;font-size:0.75rem;font-weight:600;">🇺🇸 USA</span>
+            <span style="background:#f0fafa;border:1px solid rgba(14,143,138,0.2);color:#085e5a;padding:4px 12px;border-radius:20px;font-size:0.75rem;font-weight:600;">🇪🇺 Europe</span>
+            <span style="background:#f0fafa;border:1px solid rgba(14,143,138,0.2);color:#085e5a;padding:4px 12px;border-radius:20px;font-size:0.75rem;font-weight:600;">🇨🇦 Canada</span>
+            <span style="background:#f0fafa;border:1px solid rgba(14,143,138,0.2);color:#085e5a;padding:4px 12px;border-radius:20px;font-size:0.75rem;font-weight:600;">+ More</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- VALUES -->
+      <div style="background:linear-gradient(160deg,#0a3d5a 0%,#0e5a7a 100%);border-radius:20px;padding:36px 32px;box-shadow:0 10px 40px rgba(10,61,90,0.3);position:relative;overflow:hidden;height:100%;">
+        <!-- Decorative background rings -->
+        <div style="position:absolute;top:-40px;right:-40px;width:150px;height:150px;border-radius:50%;border:1px solid rgba(11,181,175,0.15);pointer-events:none;"></div>
+        <div style="position:absolute;bottom:-50px;left:-30px;width:130px;height:130px;border-radius:50%;border:1px solid rgba(255,255,255,0.06);pointer-events:none;"></div>
+
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;position:relative;z-index:1;">
+          <div style="width:50px;height:50px;background:rgba(11,181,175,0.15);border:1.5px solid rgba(11,181,175,0.4);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2 L15 9 L22 9 L16.5 14 L18.5 21 L12 17 L5.5 21 L7.5 14 L2 9 L9 9 Z" stroke="#7ee8e6" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+          <div>
+            <div style="font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(126,232,230,0.75);margin-bottom:3px;">What We Stand For</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#ffffff;line-height:1.1;">Our Values</div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative;z-index:1;">
+          <!-- Value 1 -->
+          <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:10px;transition:background 0.2s;">
+            <div style="width:32px;height:32px;background:rgba(11,181,175,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L9.8 5.8L15 6.3L11.2 9.8L12.4 15L8 12.4L3.6 15L4.8 9.8L1 6.3L6.2 5.8Z" stroke="#7ee8e6" stroke-width="1.2" fill="none"/></svg>
+            </div>
+            <span style="font-size:0.82rem;font-weight:600;color:#ffffff;">Reliability</span>
+          </div>
+          <!-- Value 2 -->
+          <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:10px;">
+            <div style="width:32px;height:32px;background:rgba(200,168,75,0.18);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="2" width="10" height="12" rx="1.5" stroke="#ffd240" stroke-width="1.2"/><line x1="3.5" y1="5.5" x2="9" y2="5.5" stroke="#ffd240" stroke-width="1"/><line x1="3.5" y1="8" x2="9" y2="8" stroke="#ffd240" stroke-width="1"/><circle cx="13" cy="12" r="2.5" stroke="#ffd240" stroke-width="1.2"/></svg>
+            </div>
+            <span style="font-size:0.82rem;font-weight:600;color:#ffffff;">Transparency</span>
+          </div>
+          <!-- Value 3 -->
+          <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:10px;">
+            <div style="width:32px;height:32px;background:rgba(11,181,175,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="5" cy="5" r="3" stroke="#7ee8e6" stroke-width="1.2"/><circle cx="11" cy="5" r="3" stroke="#7ee8e6" stroke-width="1.2"/><path d="M1 14 Q2 10 5 10 Q8 10 8 12 Q8 10 11 10 Q14 10 15 14" stroke="#7ee8e6" stroke-width="1.2" fill="none"/></svg>
+            </div>
+            <span style="font-size:0.82rem;font-weight:600;color:#ffffff;">Customer Focus</span>
+          </div>
+          <!-- Value 4 -->
+          <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:10px;">
+            <div style="width:32px;height:32px;background:rgba(200,168,75,0.18);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.5 L8 8 M8 8 L13 11.5" stroke="#ffd240" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="8" r="6.5" stroke="#ffd240" stroke-width="1.2"/></svg>
+            </div>
+            <span style="font-size:0.82rem;font-weight:600;color:#ffffff;">Integrity</span>
+          </div>
+
+          <!-- Value 6 -->
+          <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:10px;">
+            <div style="width:32px;height:32px;background:rgba(11,181,175,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 12 L6 8 L9 10 L14 4" stroke="#7ee8e6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="11,4 14,4 14,7" stroke="#7ee8e6" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <span style="font-size:0.82rem;font-weight:600;color:#ffffff;">Efficiency</span>
+          </div>
+
+          <!-- Value 8 -->
+          <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:10px;">
+            <div style="width:32px;height:32px;background:rgba(200,168,75,0.18);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8 Q3 4 8 4 Q13 4 13 8 Q13 12 8 12 Q5 12 3.5 10" stroke="#ffd240" stroke-width="1.3" fill="none"/><path d="M3 13 L3 8 L7 10" stroke="#ffd240" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span style="font-size:0.82rem;font-weight:600;color:#ffffff;">Partnership</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
 <!-- ═══════ TRADE LANES ═══════ -->
-<section id="coverage">
-  <div class="section-header section-header-center reveal">
-    <div class="section-tag">Global Reach</div>
-    <h2 class="section-title">Trade Lanes & <span>Port Coverage</span></h2>
-    <p class="section-desc">
-      We operate across all major global trade lanes, connecting your cargo
-      from Indian ports to destinations worldwide.
-    </p>
+<section id="coverage" style="padding:0;background:var(--wave-blue);">
+
+  <!-- Photo banner for coverage -->
+  <div style="position:relative;height:260px;overflow:hidden;">
+    <img
+      src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1600&q=80&auto=format&fit=crop"
+      alt="Global port and shipping routes"
+      style="width:100%;height:100%;object-fit:cover;object-position:center 55%;"
+    />
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,20,40,0.88) 0%,rgba(4,20,40,0.55) 60%,rgba(4,20,40,0.18) 100%);"></div>
+    <div style="position:absolute;inset:0;display:flex;align-items:center;padding:0 7%;">
+      <div>
+        <div style="font-size:0.72rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#7ee8e6;margin-bottom:12px;">Global Reach</div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;color:#ffffff;line-height:1.15;margin-bottom:10px;">Trade Lanes &amp; <span style="color:#7ee8e6;">Port Coverage</span></h2>
+        <p style="font-size:0.95rem;color:rgba(255,255,255,0.8);max-width:480px;line-height:1.65;">Connecting Indian ports to the world — from Mundra and JNPT to Hamburg, Rotterdam, New York and beyond.</p>
+      </div>
+    </div>
   </div>
 
-  <div class="lanes-grid">
+  <div style="padding:60px 7% 0;">
+
+  <!-- WORLD MAP — amCharts 5 with bundled world geodata (no external tiles needed) -->
+  <div class="world-map-wrap reveal" style="margin-bottom:48px;">
+    <div style="border-radius:20px;overflow:hidden;box-shadow:0 12px 56px rgba(10,46,74,0.35);position:relative;background:#0d2035;">
+
+      <!-- Header badge -->
+      <div style="position:absolute;top:16px;left:50%;transform:translateX(-50%);z-index:100;background:rgba(10,28,50,0.92);backdrop-filter:blur(10px);border:1px solid rgba(11,181,175,0.3);border-radius:8px;padding:8px 28px;white-space:nowrap;">
+        <span style="font-size:0.75rem;font-weight:700;letter-spacing:3px;color:rgba(255,255,255,0.82);font-family:'DM Sans',sans-serif;text-transform:uppercase;">Our Global Footprint</span>
+      </div>
+
+      <!-- amCharts map container -->
+      <div id="aquaMap" style="width:100%;height:500px;"></div>
+
+      <!-- Legend -->
+      <div style="position:absolute;bottom:16px;left:16px;z-index:100;background:rgba(10,28,50,0.9);backdrop-filter:blur(10px);border:1px solid rgba(11,181,175,0.2);border-radius:10px;padding:10px 18px;display:flex;gap:22px;align-items:center;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <svg width="34" height="6"><line x1="0" y1="3" x2="34" y2="3" stroke="#0ff5ef" stroke-width="2.5" stroke-dasharray="6,4"/></svg>
+          <span style="font-size:0.72rem;font-weight:600;color:rgba(255,255,255,0.85);font-family:'DM Sans',sans-serif;">India → Europe (Suez)</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <svg width="34" height="6"><line x1="0" y1="3" x2="34" y2="3" stroke="#ffd240" stroke-width="2.5" stroke-dasharray="6,4"/></svg>
+          <span style="font-size:0.72rem;font-weight:600;color:rgba(255,255,255,0.85);font-family:'DM Sans',sans-serif;">India → USA &amp; Canada</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- amCharts 5 scripts — self-contained, no API key, bundles its own geodata -->
+  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+  <script>
+  (function() {
+    function initAmMap() {
+      if (typeof am5 === 'undefined' || typeof am5map === 'undefined' || typeof am5geodata_worldLow === 'undefined') {
+        setTimeout(initAmMap, 150);
+        return;
+      }
+
+      // Create root
+      var root = am5.Root.new("aquaMap");
+      root.setThemes([am5themes_Animated.new(root)]);
+
+      // Create map chart
+      var chart = root.container.children.push(
+        am5map.MapChart.new(root, {
+          panX: "translateX",
+          panY: "translateY",
+          projection: am5map.geoNaturalEarth1(),
+          homeZoomLevel: 1.2,
+          homeGeoPoint: { longitude: 20, latitude: 20 }
+        })
+      );
+
+      // ── Background ocean colour ──
+      chart.set("background", am5.Rectangle.new(root, {
+        fill: am5.color(0x0d2035),
+        fillOpacity: 1
+      }));
+
+      // ── Polygon series: country fills ──
+      var polygonSeries = chart.series.push(
+        am5map.MapPolygonSeries.new(root, {
+          geoJSON: am5geodata_worldLow,
+          exclude: ["AQ"]
+        })
+      );
+      polygonSeries.mapPolygons.template.setAll({
+        fill: am5.color(0x3a5568),
+        stroke: am5.color(0x4e6d84),
+        strokeWidth: 0.5,
+        fillOpacity: 0.9,
+        tooltipText: "{name}"
+      });
+      // Highlight India
+      polygonSeries.mapPolygons.template.adapters.add("fill", function(fill, target) {
+        if (target.dataItem && target.dataItem.get("id") === "IN") {
+          return am5.color(0x1a5a8a);
+        }
+        return fill;
+      });
+      polygonSeries.mapPolygons.template.adapters.add("stroke", function(stroke, target) {
+        if (target.dataItem && target.dataItem.get("id") === "IN") {
+          return am5.color(0x0bb5af);
+        }
+        return stroke;
+      });
+      polygonSeries.mapPolygons.template.adapters.add("strokeWidth", function(sw, target) {
+        if (target.dataItem && target.dataItem.get("id") === "IN") return 2;
+        return sw;
+      });
+
+      // ── Line series: sea routes ──
+      var lineSeries = chart.series.push(am5map.MapLineSeries.new(root, {}));
+      lineSeries.mapLines.template.setAll({
+        stroke: am5.color(0x0ff5ef),
+        strokeWidth: 2.5,
+        strokeDasharray: [10, 6],
+        strokeOpacity: 0.9
+      });
+
+      var lineSeries2 = chart.series.push(am5map.MapLineSeries.new(root, {}));
+      lineSeries2.mapLines.template.setAll({
+        stroke: am5.color(0xffd240),
+        strokeWidth: 2.5,
+        strokeDasharray: [10, 6],
+        strokeOpacity: 0.9
+      });
+
+      // India → Europe via Suez (realistic waypoints)
+      lineSeries.data.push({
+        geometry: {
+          type: "LineString",
+          coordinates: [
+            [72.9, 19.0],  // JNPT
+            [57.0, 12.5],  // Gulf of Aden
+            [43.5, 11.8],  // Djibouti
+            [43.2, 12.5],  // Bab-el-Mandeb
+            [38.5, 20.0],  // Red Sea
+            [34.0, 27.0],  // Red Sea north
+            [32.5, 30.0],  // Suez
+            [32.3, 31.3],  // Port Said
+            [28.0, 34.0],  // Eastern Med
+            [15.0, 36.8],  // Central Med
+            [4.0,  37.8],  // West Med
+            [-4.0, 36.5],  // Gibraltar
+            [-9.2, 38.5],  // Lisbon area
+            [-5.0, 47.0],  // Bay of Biscay
+            [2.0,  51.5],  // English Channel
+            [9.9,  53.5]   // Hamburg
+          ]
+        }
+      });
+
+      // India → USA via Cape of Good Hope
+      lineSeries2.data.push({
+        geometry: {
+          type: "LineString",
+          coordinates: [
+            [72.9, 19.0],   // JNPT
+            [60.0,  5.0],   // Indian Ocean
+            [55.0, -10.0],  // South Indian Ocean
+            [38.0, -25.0],  // South Indian Ocean
+            [26.0, -34.5],  // Cape approach
+            [18.5, -34.8],  // Cape of Good Hope
+            [10.0, -35.0],  // South Atlantic
+            [0.0,  -32.0],  // Mid Atlantic
+            [-15.0,-26.0],  // South Atlantic
+            [-28.0,-18.0],  // South Atlantic
+            [-34.0, -8.0],  // Near Brazil
+            [-36.0,  5.0],  // North Atlantic
+            [-40.0, 20.0],  // North Atlantic
+            [-50.0, 30.0],  // Mid Atlantic
+            [-60.0, 35.0],  // West Atlantic
+            [-68.0, 38.0],  // US East approach
+            [-74.2, 40.5]   // New York
+          ]
+        }
+      });
+
+      // India → Canada/Vancouver via Pacific
+      lineSeries2.data.push({
+        geometry: {
+          type: "LineString",
+          coordinates: [
+            [72.9, 19.0],
+            [80.0, 15.0],
+            [90.0,  5.0],
+            [100.0,-5.0],
+            [104.0, 1.3],  // Singapore
+            [115.0, 10.0],
+            [120.0, 22.0],
+            [135.0, 35.0],
+            [150.0, 45.0],
+            [160.0, 50.0],
+            [170.0, 52.0],
+            [-170.0,50.0],
+            [-140.0,49.0],
+            [-123.1,49.3]  // Vancouver
+          ]
+        }
+      });
+
+      // ── Point/pin series: port markers ──
+      function makePointSeries(color, size) {
+        var ps = chart.series.push(am5map.MapPointSeries.new(root, {}));
+        ps.bullets.push(function() {
+          var circle = am5.Circle.new(root, {
+            radius: size,
+            fill: am5.color(color),
+            stroke: am5.color(0xffffff),
+            strokeWidth: 1.5,
+            tooltipText: "{title}
+{subtitle}",
+            cursorOverStyle: "pointer"
+          });
+          return am5.Bullet.new(root, { sprite: circle });
+        });
+        return ps;
+      }
+
+      // India origin — teal, large
+      var indiaSeries = makePointSeries(0x0bb5af, 12);
+      indiaSeries.data.push({
+        geometry: { type: "Point", coordinates: [72.8777, 19.0760] },
+        title: "INDIA — Origin",
+        subtitle: "Jodhpur · Mundra · JNPT"
+      });
+
+      // Europe ports — cyan
+      var europeSeries = makePointSeries(0x7ee8e6, 9);
+      europeSeries.data.push(
+        { geometry: { type:"Point", coordinates: [9.9937,  53.5511] }, title: "Hamburg, Germany",      subtitle: "European hub" },
+        { geometry: { type:"Point", coordinates: [4.4777,  51.9244] }, title: "Rotterdam, Netherlands", subtitle: "Europe's largest port" },
+        { geometry: { type:"Point", coordinates: [4.4025,  51.2194] }, title: "Antwerp, Belgium",       subtitle: "Key gateway" },
+        { geometry: { type:"Point", coordinates: [1.3500,  51.9600] }, title: "Felixstowe, UK",         subtitle: "UK's largest container port" }
+      );
+
+      // USA ports — gold
+      var usaSeries = makePointSeries(0xffd240, 9);
+      usaSeries.data.push(
+        { geometry: { type:"Point", coordinates: [-74.1745, 40.6840] }, title: "New York / Newark",          subtitle: "East Coast USA" },
+        { geometry: { type:"Point", coordinates: [-118.1937,33.7701] }, title: "Los Angeles / Long Beach",   subtitle: "West Coast USA" },
+        { geometry: { type:"Point", coordinates: [-81.0948, 31.9924] }, title: "Savannah, Georgia",          subtitle: "Growing US gateway" }
+      );
+
+      // Canada ports — gold
+      var canadaSeries = makePointSeries(0xffd240, 8);
+      canadaSeries.data.push(
+        { geometry: { type:"Point", coordinates: [-123.1207, 49.2827] }, title: "Vancouver, Canada",  subtitle: "West Coast Canada" },
+        { geometry: { type:"Point", coordinates: [-73.5673,  45.5017] }, title: "Montreal, Canada",   subtitle: "East Coast Canada" }
+      );
+
+      // ── Labels for key hubs ──
+      function makeLabel(series, lon, lat, text, color) {
+        var ls = chart.series.push(am5map.MapPointSeries.new(root, {}));
+        ls.bullets.push(function() {
+          return am5.Bullet.new(root, {
+            sprite: am5.Label.new(root, {
+              text: text,
+              fill: am5.color(color),
+              fontSize: 11,
+              fontWeight: "700",
+              fontFamily: "DM Sans, sans-serif",
+              paddingTop: 14,
+              centerX: am5.p50
+            })
+          });
+        });
+        ls.data.push({ geometry: { type:"Point", coordinates: [lon, lat] } });
+      }
+      makeLabel(chart, 72.9, 19.1, "INDIA", 0x0ff5ef);
+      makeLabel(chart, 7.0,  51.5, "EUROPE", 0x7ee8e6);
+      makeLabel(chart,-96.0, 40.0, "USA", 0xffd240);
+      makeLabel(chart,-96.0, 53.0, "CANADA", 0xffd240);
+
+      // ── Animate in ──
+      chart.appear(1000, 100);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAmMap);
+    } else {
+      initAmMap();
+    }
+  })();
+  </script>
+
+  <!-- Stats strip -->
+  <div class="coverage-stats-strip reveal" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:48px;">
+    <div style="background:white;border-radius:14px;padding:24px 16px;text-align:center;border:1.5px solid rgba(14,143,138,0.15);box-shadow:0 4px 20px rgba(10,46,74,0.07);">
+      <div style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:800;color:#0a3d5a;">20+</div>
+      <div style="font-size:0.82rem;color:#6b7280;margin-top:4px;font-weight:500;">Countries Served</div>
+    </div>
+    <div style="background:white;border-radius:14px;padding:24px 16px;text-align:center;border:1.5px solid rgba(14,143,138,0.15);box-shadow:0 4px 20px rgba(10,46,74,0.07);">
+      <div style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:800;color:#0e8f8a;">14+</div>
+      <div style="font-size:0.82rem;color:#6b7280;margin-top:4px;font-weight:500;">European Nations</div>
+    </div>
+    <div style="background:white;border-radius:14px;padding:24px 16px;text-align:center;border:1.5px solid rgba(14,143,138,0.15);box-shadow:0 4px 20px rgba(10,46,74,0.07);">
+      <div style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:800;color:#0a3d5a;">3</div>
+      <div style="font-size:0.82rem;color:#6b7280;margin-top:4px;font-weight:500;">India Origin Ports</div>
+    </div>
+    <div style="background:white;border-radius:14px;padding:24px 16px;text-align:center;border:1.5px solid rgba(14,143,138,0.15);box-shadow:0 4px 20px rgba(10,46,74,0.07);">
+      <div style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:800;color:#0e8f8a;">12+</div>
+      <div style="font-size:0.82rem;color:#6b7280;margin-top:4px;font-weight:500;">Destination Ports</div>
+    </div>
+  </div>
+
+  </div>
+  <div class="lanes-grid" style="grid-template-columns:repeat(2,1fr);gap:20px;">
     <div class="lane-card reveal">
-      <div class="lane-flag">🇦🇪</div>
+      <div class="lane-flag">🇺🇸</div>
       <div class="lane-body">
-        <div class="lane-region">Middle East &amp; Gulf</div>
-        <div class="lane-title">India → UAE, Saudi Arabia, Oman, Kuwait</div>
-        <div class="lane-ports">Jebel Ali (Dubai) · King Abdulaziz (Dammam) · Salalah · Sohar · Hamad (Qatar)</div>
+        <div class="lane-region">USA</div>
+        <div class="lane-title">India → USA</div>
+        <div class="lane-ports">New York/NJ · Los Angeles · Long Beach · Savannah · Houston</div>
+      </div>
+    </div>
+    <div class="lane-card reveal">
+      <div class="lane-flag">🇨🇦</div>
+      <div class="lane-body">
+        <div class="lane-region">Canada</div>
+        <div class="lane-title">India → Canada</div>
+        <div class="lane-ports">Vancouver · Montreal · Halifax · Toronto (via rail)</div>
       </div>
     </div>
     <div class="lane-card reveal">
       <div class="lane-flag">🇩🇪</div>
       <div class="lane-body">
-        <div class="lane-region">Europe</div>
-        <div class="lane-title">India → Germany, Netherlands, UK, France, Italy</div>
-        <div class="lane-ports">Hamburg · Rotterdam · Felixstowe · Antwerp · Barcelona · Genoa</div>
+        <div class="lane-region">North Europe</div>
+        <div class="lane-title">India → Germany, Netherlands, Belgium, UK</div>
+        <div class="lane-ports">Hamburg · Rotterdam · Antwerp · Felixstowe · Bremerhaven</div>
       </div>
     </div>
     <div class="lane-card reveal">
-      <div class="lane-flag">🇺🇸</div>
+      <div class="lane-flag">🇫🇷</div>
       <div class="lane-body">
-        <div class="lane-region">North America</div>
-        <div class="lane-title">India → USA, Canada, Mexico</div>
-        <div class="lane-ports">New York/NJ · Los Angeles · Long Beach · Savannah · Vancouver</div>
-      </div>
-    </div>
-    <div class="lane-card reveal">
-      <div class="lane-flag">🇨🇳</div>
-      <div class="lane-body">
-        <div class="lane-region">Far East &amp; South-East Asia</div>
-        <div class="lane-title">India → China, Japan, South Korea, Singapore, Malaysia</div>
-        <div class="lane-ports">Shanghai · Qingdao · Busan · Singapore · Port Klang · Tokyo</div>
-      </div>
-    </div>
-    <div class="lane-card reveal">
-      <div class="lane-flag">🌍</div>
-      <div class="lane-body">
-        <div class="lane-region">Africa</div>
-        <div class="lane-title">India → Kenya, South Africa, Tanzania, Nigeria</div>
-        <div class="lane-ports">Mombasa · Durban · Dar es Salaam · Apapa (Lagos) · Djibouti</div>
-      </div>
-    </div>
-    <div class="lane-card reveal">
-      <div class="lane-flag">🇧🇷</div>
-      <div class="lane-body">
-        <div class="lane-region">South America &amp; Australia</div>
-        <div class="lane-title">India → Brazil, Argentina, Australia, New Zealand</div>
-        <div class="lane-ports">Santos · Buenos Aires · Sydney · Melbourne · Auckland</div>
+        <div class="lane-region">South Europe</div>
+        <div class="lane-title">India → France, Italy, Spain, Portugal, Greece</div>
+        <div class="lane-ports">Le Havre · Genoa · Barcelona · Piraeus · Valencia</div>
       </div>
     </div>
   </div>
@@ -1394,63 +2106,14 @@
     <div class="section-tag" style="margin-bottom:8px">India — Origin Ports</div>
     <h3 style="font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:20px">We operate from all major Indian seaports</h3>
     <div style="display:flex;flex-wrap:wrap;gap:10px;">
+      <span style="background:var(--navy);color:var(--white);padding:7px 16px;border-radius:20px;font-size:0.83rem;font-weight:500">⚓ Nhava Sheva / JNPT</span>
       <span style="background:var(--navy);color:var(--white);padding:7px 16px;border-radius:20px;font-size:0.83rem;font-weight:500">⚓ Mundra (Gujarat)</span>
-      <span style="background:var(--navy);color:var(--white);padding:7px 16px;border-radius:20px;font-size:0.83rem;font-weight:500">⚓ JNPT / Nhava Sheva</span>
-      <span style="background:var(--navy);color:var(--white);padding:7px 16px;border-radius:20px;font-size:0.83rem;font-weight:500">⚓ Chennai</span>
-      <span style="background:var(--navy);color:var(--white);padding:7px 16px;border-radius:20px;font-size:0.83rem;font-weight:500">⚓ Hazira (Surat)</span>
-      <span style="background:var(--navy);color:var(--white);padding:7px 16px;border-radius:20px;font-size:0.83rem;font-weight:500">⚓ Pipavav</span>
-      <span style="background:var(--navy);color:var(--white);padding:7px 16px;border-radius:20px;font-size:0.83rem;font-weight:500">⚓ Kolkata / Haldia</span>
-      <span style="background:var(--navy);color:var(--white);padding:7px 16px;border-radius:20px;font-size:0.83rem;font-weight:500">⚓ Kochi</span>
       <span style="background:var(--teal);color:var(--white);padding:7px 16px;border-radius:20px;font-size:0.83rem;font-weight:500">🏭 ICD Jodhpur (Gateway)</span>
-      <span style="background:var(--teal);color:var(--white);padding:7px 16px;border-radius:20px;font-size:0.83rem;font-weight:500">🏭 ICD Jaipur</span>
-      <span style="background:var(--teal);color:var(--white);padding:7px 16px;border-radius:20px;font-size:0.83rem;font-weight:500">🏭 ICD Bhiwandi</span>
     </div>
   </div>
 </section>
 
-<!-- ═══════ PROCESS ═══════ -->
-<section id="process">
-  <div class="section-header section-header-center reveal">
-    <div class="section-tag">How It Works</div>
-    <h2 class="section-title">From Quote to <span>Delivery</span></h2>
-    <p class="section-desc">
-      A simple, transparent 5-step process that takes the complexity out of international shipping.
-    </p>
-  </div>
 
-  <div class="process-steps">
-    <div class="process-step reveal">
-      <div class="step-circle">📋</div>
-      <div class="step-label">Step 1</div>
-      <div class="step-name">Request a Quote</div>
-      <div class="step-desc">Share your cargo details, origin, and destination. We send you a competitive, itemised freight quote within 24 hours.</div>
-    </div>
-    <div class="process-step reveal">
-      <div class="step-circle">✅</div>
-      <div class="step-label">Step 2</div>
-      <div class="step-name">Booking &amp; Confirmation</div>
-      <div class="step-desc">Once you approve the quote, we place the booking with the shipping line and confirm your space on the vessel.</div>
-    </div>
-    <div class="process-step reveal">
-      <div class="step-circle">📦</div>
-      <div class="step-label">Step 3</div>
-      <div class="step-name">Cargo Pickup &amp; Stuffing</div>
-      <div class="step-desc">We coordinate inland transport from your premises to the port or ICD. Container stuffing is supervised and documented.</div>
-    </div>
-    <div class="process-step reveal">
-      <div class="step-circle">🛃</div>
-      <div class="step-label">Step 4</div>
-      <div class="step-name">Export Customs &amp; Docs</div>
-      <div class="step-desc">We file all shipping bill documents, handle customs examination, and prepare your complete export document set.</div>
-    </div>
-    <div class="process-step reveal">
-      <div class="step-circle">🌊</div>
-      <div class="step-label">Step 5</div>
-      <div class="step-name">Sailing &amp; Delivery</div>
-      <div class="step-desc">Your cargo sails. We share the Bill of Lading, track the vessel, and coordinate delivery or destination customs at the other end.</div>
-    </div>
-  </div>
-</section>
 
 <!-- ═══════ CONTACT ═══════ -->
 <section id="contact">
@@ -1478,7 +2141,7 @@
           <div>
             <div class="contact-item-label">Phone / WhatsApp</div>
             <div class="contact-item-value">
-              <a href="tel:+919123456789">+91 91234 56789</a>
+              <a href="tel:+918529017667">+91-8529017667</a>
             </div>
           </div>
         </div>
@@ -1496,14 +2159,13 @@
           <div>
             <div class="contact-item-label">Business Hours</div>
             <div class="contact-item-value">
-              Mon – Sat: 10:00 AM – 7:00 PM IST<br>
-              WhatsApp queries answered 7 days
+              Mon – Sat: 10:00 AM – 6:00 PM IST<br>
             </div>
           </div>
         </div>
       </div>
 
-      <a href="https://wa.me/919123456789?text=Hello%20Aquafreights%2C%20I%20need%20a%20freight%20quote." class="whatsapp-btn" target="_blank" rel="noopener">
+      <a href="https://wa.me/918529017667?text=Hello%20Aquafreights%2C%20I%20need%20a%20freight%20quote." class="whatsapp-btn" target="_blank" rel="noopener">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Chat on WhatsApp
       </a>
@@ -1512,9 +2174,9 @@
     <!-- QUOTE FORM -->
     <div class="quote-form reveal">
       <div class="form-title">Request a Free Quote</div>
-      <p class="form-sub">Fill in your shipment details and we'll get back to you within 24 hours.</p>
+      <p class="form-sub">Fill in your shipment details and we'll get back to you within 30 minutes.</p>
 
-      <form id="quoteForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <form id="quoteForm" action="https://formspree.io/f/meedzbrk" method="POST">
         <div class="form-row">
           <div class="form-group">
             <label for="name">Your Name *</label>
@@ -1568,9 +2230,9 @@
           <textarea id="message" name="message" placeholder="Cargo weight, volume, HSN code, preferred shipping line, incoterms, target ETA, or any special requirements..."></textarea>
         </div>
         <button type="submit" class="btn-submit">📋 Send Quote Request</button>
-        <p class="form-note">We respond within 24 hours · No spam, ever</p>
+        <p class="form-note">We respond within 30 minutes · No spam, ever</p>
         <div class="success-msg" id="successMsg">
-          ✅ Thank you! Your enquiry has been received. We'll get back to you within 24 hours.
+          ✅ Thank you! Your enquiry has been received. We'll get back to you within 30 minutes.
         </div>
       </form>
     </div>
@@ -1588,21 +2250,20 @@
         transparent ocean freight solutions.
       </p>
       <div class="footer-socials">
-        <a href="https://wa.me/919123456789" class="social-btn" title="WhatsApp" target="_blank" rel="noopener">💬</a>
+        <a href="https://wa.me/918529017667" class="social-btn" title="WhatsApp" target="_blank" rel="noopener">💬</a>
         <a href="mailto:info@aquafreights.in" class="social-btn" title="Email">📧</a>
-        <a href="tel:+919123456789" class="social-btn" title="Call">📞</a>
+        <a href="tel:+918529017667" class="social-btn" title="Call">📞</a>
       </div>
     </div>
 
     <div>
       <div class="footer-col-title">Services</div>
       <ul class="footer-links">
-        <li><a href="#services">FCL Shipments</a></li>
         <li><a href="#services">LCL Consolidation</a></li>
+        <li><a href="#services">FCL Shipments</a></li>
         <li><a href="#services">Customs Clearance</a></li>
         <li><a href="#services">Freight Documentation</a></li>
         <li><a href="#services">Inland Transportation</a></li>
-        <li><a href="#services">Cargo Insurance</a></li>
       </ul>
     </div>
 
@@ -1612,8 +2273,7 @@
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About Us</a></li>
         <li><a href="#coverage">Trade Lanes</a></li>
-        <li><a href="#process">How It Works</a></li>
-        <li><a href="#contact">Request a Quote</a></li>
+            <li><a href="#contact">Request a Quote</a></li>
         <li><a href="mailto:info@aquafreights.in">Contact Us</a></li>
       </ul>
     </div>
@@ -1621,18 +2281,18 @@
 
   <div class="footer-bottom">
     <p class="footer-copy">
-      © 2025 <span>Aquafreights</span>. All rights reserved. Jodhpur, Rajasthan, India.
+      © 2026 <span>Aquafreights</span>. All rights reserved. Jodhpur, Rajasthan, India.
     </p>
     <p class="footer-copy">
       <a href="mailto:info@aquafreights.in" style="color:rgba(255,255,255,0.3);transition:color 0.2s;" onmouseover="this.style.color='#0bb5af'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">info@aquafreights.in</a>
       &nbsp;·&nbsp;
-      <a href="tel:+919123456789" style="color:rgba(255,255,255,0.3);transition:color 0.2s;" onmouseover="this.style.color='#0bb5af'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">+91 91234 56789</a>
+      <a href="tel:+918529017667" style="color:rgba(255,255,255,0.3);transition:color 0.2s;" onmouseover="this.style.color='#0bb5af'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">+91-8529017667</a>
     </p>
   </div>
 </footer>
 
 <!-- ═══════ FLOATING WA ═══════ -->
-<a href="https://wa.me/919123456789?text=Hello%20Aquafreights%2C%20I%20need%20a%20freight%20quote." class="float-wa" target="_blank" rel="noopener" title="Chat on WhatsApp">
+<a href="https://wa.me/918529017667?text=Hello%20Aquafreights%2C%20I%20need%20a%20freight%20quote." class="float-wa" target="_blank" rel="noopener" title="Chat on WhatsApp">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
